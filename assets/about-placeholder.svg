@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder Image</title>
+  <desc id="desc">Image placeholder for the theater introduction section.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fbff"/>
+      <stop offset="100%" stop-color="#dfeaf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="30" fill="url(#bg)"/>
+  <rect x="28" y="28" width="744" height="544" rx="24" fill="none" stroke="#23303d" stroke-width="4" stroke-dasharray="10 10"/>
+  <text x="400" y="296" text-anchor="middle" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#23303d">IMAGE</text>
+</svg>

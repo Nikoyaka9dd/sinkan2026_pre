@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>劇団ケッペキ 2026年新歓特設サイト</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="site-shell">
+    <header class="hero reveal">
+      <p class="hero-kicker">劇団ケッペキ</p>
+      <h1 class="hero-title">2026年新歓特設サイト</h1>
+
+      <nav class="section-nav" aria-label="セクション移動">
+        <a class="section-link" href="#about">劇団ケッペキとは</a>
+        <a class="section-link" href="#qa">Q&amp;A</a>
+      </nav>
+    </header>
+
+    <section id="home" class="home-section reveal">
+      <h2 class="section-title">SNSリンク</h2>
+
+      <div class="sns-grid">
+        <a class="sns-button" href="https://keppeki.github.io/" target="_blank" rel="noopener noreferrer" style="--sns-color: #bb0404; --sns-text: #ffffff;">
+          ケッペキHP
+        </a>
+        <a class="sns-button" href="https://x.com/g_keppeki" target="_blank" rel="noopener noreferrer" style="--sns-color: #111111; --sns-text: #ffffff;">
+          X
+        </a>
+        <a class="sns-button" href="https://www.instagram.com/g_keppeki/" target="_blank" rel="noopener noreferrer" style="--sns-color: #e1306c; --sns-text: #ffffff;">
+          Instagram
+        </a>
+        <a class="sns-button" href="https://note.com/gekidan_keppeki" target="_blank" rel="noopener noreferrer" style="--sns-color: #868686; --sns-text: #ffffff;">
+          note
+        </a>
+        <!-- <a class="sns-button" href="https://line.me" target="_blank" rel="noopener noreferrer" style="--sns-color: #06c755; --sns-text: #ffffff;">
+          LINE
+        </a> -->
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <h2 class="section-title reveal">劇団ケッペキとは</h2>
+
+      <div class="intro-list">
+        <article class="intro-block reveal">
+          <div class="intro-text">
+            <h3>京都大学公認演劇サークル</h3>
+            <p>
+              劇団鞠小路、VOL.0を経て、1993年に京都大学学生部公認サークルとして総合芸術集団潔癖青年文化団が結成されました。
+              1995年には劇団ケッペキと改称し、京都大学公認の演劇サークルとして現在で結成34年目となります。
+            </p>
+          </div>
+          <img class="intro-image intro-image--native" src="assets/logo.png" alt="劇団活動のイメージ画像">
+        </article>
+
+        <article class="intro-block reverse reveal">
+          <div class="intro-text">
+            <h3>さまざまな大学の学生が集まるインカレサークル</h3>
+            <p>
+              団員は現在80名ほど(2026年現在)。京都大学だけでなく、京都芸術大学、同志社大学、立命館大学、京都産業大学
+              京都工芸繊維大学、龍谷大学、大谷大学など、演劇を愛する学生がさまざまな大学から集まっています。
+            </p>
+          </div>
+          <img class="intro-image" src="assets/2.JPG" alt="稽古のイメージ画像">
+        </article>
+
+        <article class="intro-block reveal">
+          <div class="intro-text">
+            <h3>プロデュース制</h3>
+            <p>
+              劇団ケッペキの最大の特徴は、定期公演制ではなく、全ての団員が公演を企画することができる
+              プロデュース制を採用していることです。座長をおかないことで、団員一人一人の「芝居を創りたい」
+              という想いを最大限に尊重しています。
+              これは様々な劇団が存在する京都の学生演劇界においても珍しい制度です。 
+              また団全体としてではなく、団員が集まり結成したユニットによる「ユニット公演」も年に数回あり、
+              かなり自由度の高い演劇活動が可能となっています。
+            </p>
+          </div>
+          <div class="poster-collage" aria-label="公演ビラのコラージュ">
+            <img class="poster-card poster-card--a" src="assets/winter.jpg" alt="公演ビラ『舟の鏡』">
+            <img class="poster-card poster-card--b" src="assets/sinkan.jpg" alt="公演ビラ『いつだって今だもん』">
+            <img class="poster-card poster-card--c" src="assets/sinzin.png" alt="公演ビラ『あかるい夜にくらいがくる。』">
+          </div>
+        </article>
+
+        <article class="intro-block reverse reveal">
+          <div class="intro-text">
+            <h3>年間を通して活動</h3>
+            <p>
+              ケッペキでは規模も形態も多様な公演を例年5～10本行ってきました。
+              新型コロナウイルス感染症の流行を受け2020年、2021年と対面形式の公演を打てずにいましたが、 
+              2022年12月「来るもの拒まずおかえり公演　『無差別』」の上演を
+              皮切りに対面での活動を解禁し、
+              2025年も新人公演、卒業公演、新歓公演や夏公演など、活発に公演しています。
+            </p>
+          </div>
+          <img class="intro-image" src="assets/3.JPG" alt="公演準備のイメージ画像">
+        </article>
+      </div>
+    </section>
+
+    <section id="qa" class="qa-section">
+      <h2 class="section-title reveal">Q&amp;A</h2>
+      <div id="qa-list" class="qa-list reveal"></div>
+    </section>
+
+    <footer class="footer reveal">
+      <small>© 2026 劇団ケッペキ</small>
+    </footer>
+  </main>
+
+  <template id="qa-item-template">
+    <article class="qa-item">
+      <button class="qa-question" type="button" aria-expanded="false">
+        <span class="qa-question-text"></span>
+        <span class="qa-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="qa-answer">
+        <p class="qa-answer-text"></p>
+      </div>
+    </article>
+  </template>
+</body>
+</html>
