@@ -100,6 +100,134 @@ function syncOpenQAHeights() {
   });
 }
 
+function isKanjiWord(text) {
+  return /^[\p{Script=Han}々〆ヵヶ]+$/u.test(text);
+}
+
+function isWordLikeToken(text) {
+  return /[A-Za-z0-9\u3040-\u30ff\u3400-\u9fff々〆ヵヶ]/u.test(text);
+}
+
+function mergeWordSegments(segments) {
+  const merged = [];
+
+  segments.forEach((segment) => {
+    const token = segment.segment;
+    if (!token) {
+      return;
+    }
+
+    const isWordLike = Boolean(segment.isWordLike);
+    const prev = merged[merged.length - 1];
+
+    const canMergeKanji =
+      isWordLike &&
+      prev &&
+      prev.isWordLike &&
+      isKanjiWord(prev.text) &&
+      isKanjiWord(token) &&
+      prev.text.length + token.length <= 8;
+
+    if (canMergeKanji) {
+      prev.text += token;
+      return;
+    }
+
+    merged.push({ text: token, isWordLike });
+  });
+
+  return merged;
+}
+
+function tokenizeFallback(text) {
+  const pattern =
+    /(\s+|[、。！？・「」（）『』【】［］〈〉《》…,.!?;:]+|[A-Za-z0-9][A-Za-z0-9+._:/-]*|[ぁ-んァ-ヴー]+|[\p{Script=Han}々〆ヵヶ]+|.)/gu;
+  const tokens = [];
+  let match;
+
+  while ((match = pattern.exec(text)) !== null) {
+    const token = match[0];
+    tokens.push({
+      text: token,
+      isWordLike: isWordLikeToken(token)
+    });
+  }
+
+  return tokens;
+}
+
+function tokenizeForWordLock(text, segmenter) {
+  if (segmenter) {
+    return mergeWordSegments(Array.from(segmenter.segment(text)));
+  }
+
+  return tokenizeFallback(text);
+}
+
+function applyWordLockToElement(element, segmenter) {
+  const walker = document.createTreeWalker(
+    element,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode(node) {
+        if (!node.nodeValue || !node.nodeValue.trim()) {
+          return NodeFilter.FILTER_REJECT;
+        }
+
+        const parent = node.parentElement;
+        if (!parent || parent.closest(".word-lock, .no-break, .qa-icon")) {
+          return NodeFilter.FILTER_REJECT;
+        }
+
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    }
+  );
+
+  const textNodes = [];
+  while (walker.nextNode()) {
+    textNodes.push(walker.currentNode);
+  }
+
+  textNodes.forEach((node) => {
+    const tokens = tokenizeForWordLock(node.nodeValue, segmenter);
+    if (!tokens.some((token) => token.isWordLike)) {
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+    tokens.forEach((token) => {
+      if (!token.isWordLike) {
+        fragment.append(document.createTextNode(token.text));
+        return;
+      }
+
+      const span = document.createElement("span");
+      span.className = "word-lock";
+      span.textContent = token.text;
+      fragment.append(span);
+    });
+
+    node.replaceWith(fragment);
+  });
+}
+
+function lockWordBreaks() {
+  const segmenter =
+    typeof Intl !== "undefined" && Intl.Segmenter
+      ? new Intl.Segmenter("ja", { granularity: "word" })
+      : null;
+
+  const targets = document.querySelectorAll(
+    ".hero-title, .section-title, .section-link, .sns-button, .intro-text h3, .intro-text p, .qa-question-text, .qa-answer-text"
+  );
+
+  targets.forEach((element) => {
+    applyWordLockToElement(element, segmenter);
+  });
+}
+
 renderQAItems();
 observeRevealTargets();
+lockWordBreaks();
 window.addEventListener("resize", syncOpenQAHeights);

@@ -291,6 +291,18 @@ section {
   white-space: nowrap;
 }
 
+.sns-tight {
+  letter-spacing: -0.02em;
+}
+
+.word-lock {
+  white-space: nowrap;
+}
+
+.mobile-break {
+  display: none;
+}
+
 .footer {
   margin-top: clamp(2.4rem, 6vw, 4.1rem);
   text-align: center;
@@ -343,6 +355,10 @@ section {
   .poster-card--c {
     left: 28%;
     bottom: 1%;
+  }
+
+  .mobile-break {
+    display: inline;
   }
 }
 
